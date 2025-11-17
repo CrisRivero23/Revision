@@ -1,0 +1,59 @@
+classDiagram
+    class Cliente {
+        -int codCli
+        -int dni
+        -String nombreCompleto
+        -String telefono
+        -int edad
+        -String afecciones
+        -boolean estado
+        +Cliente()
+        +Cliente(dni, nombreCompleto, telefono, edad, afecciones, estado)
+        +Cliente(codCli, dni, nombreCompleto, telefono, edad, afecciones, estado)
+        +getCodCli() int
+        +setCodCli(int) void
+        +getDni() int
+        +setDni(int) void
+        +getNombreCompleto() String
+        +setNombreCompleto(String) void
+        +getTelefono() String
+        +setTelefono(String) void
+        +getEdad() int
+        +setEdad(int) void
+        +getAfecciones() String
+        +setAfecciones(String) void
+        +isEstado() boolean
+        +setEstado(boolean) void
+        +toString() String
+    }
+
+    class Conexion {
+        -String URL$
+        -String USER$
+        -String PASSWORD$
+        -Connection connection$
+        -Conexion()
+        +getConexion()$ Connection
+    }
+
+    class ClienteData {
+        -Connection con
+        +ClienteData()
+        +guardarCliente(Cliente) void
+        +buscarCliente(int) Cliente
+        +listarClientes() List~Cliente~
+        +actualizarCliente(Cliente) void
+        +bajaLogicaCliente(int) void
+        +altaLogicaCliente(int) void
+        +eliminarCliente(int) void
+        +listarClientesActivos() List~Cliente~
+    }
+
+    class Main {
+        +main(String[])$ void
+    }
+
+    ClienteData --> Conexion : usa
+    ClienteData --> Cliente : gestiona
+    Main --> ClienteData : utiliza
+    Main --> Cliente : prueba
